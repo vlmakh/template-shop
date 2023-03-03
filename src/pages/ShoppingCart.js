@@ -10,7 +10,7 @@ export const ShoppingCart = () => {
     <>
       {!isLoggedIn && <Navigate to="/login" />}
 
-      <Box display="flex" alignItems="center" justifyContent="center">
+      <Box textAlign="center" mt={6}>
         <h2>SHOPPING CART</h2>
       </Box>
     </>

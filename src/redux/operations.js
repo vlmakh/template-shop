@@ -57,12 +57,20 @@ export const register = createAsyncThunk(
   }
 );
 
-export const loginGoogle = createAsyncThunk('auth/loginGoogle', async () => {
-  const provider = new firebase.auth.GoogleAuthProvider();
-  const { user } = await auth.signInWithPopup(provider);
-  // console.log(user._delegate);
-  return user._delegate;
-});
+export const loginGoogle = createAsyncThunk(
+  'auth/loginGoogle',
+  async (_, thunkAPI) => {
+    try {
+      const provider = new firebase.auth.GoogleAuthProvider();
+      const { user } = await auth.signInWithPopup(provider);
+      // console.log(user._delegate);
+      return user._delegate;
+    } catch (error) {
+      // toast.error('There is mistake in login or password, please try again');
+      return thunkAPI.rejectWithValue('');
+    }
+  }
+);
 
 export const login = createAsyncThunk(
   'auth/login',
