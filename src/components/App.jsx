@@ -11,8 +11,6 @@ import { ShoppingCart } from 'pages/ShoppingCart';
 import { Routes, Route } from 'react-router-dom';
 
 export const App = () => {
-  console.log(process.env)
-
   return (
     <ThemeProvider theme={theme}>
       <Routes>

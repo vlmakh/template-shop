@@ -27,7 +27,8 @@ export const authSlice = createSlice({
         state.isCheckingLogin = false;
       })
       .addCase(register.rejected, state => {
-        state.user = { name: null, email: null };
+        state.name = null;
+        state.email = null;
         state.isCheckingLogin = false;
       })
       .addCase(login.fulfilled, (state, action) => {
@@ -37,7 +38,8 @@ export const authSlice = createSlice({
         state.isCheckingLogin = false;
       })
       .addCase(login.rejected, state => {
-        state.user = { name: null, email: null };
+        state.name = null;
+        state.email = null;
         state.isCheckingLogin = false;
       })
       .addCase(loginGoogle.fulfilled, (state, action) => {
@@ -57,12 +59,13 @@ export const authSlice = createSlice({
       })
       .addCase(checkCurrentUser.fulfilled, (state, action) => {
         state.isCheckingLogin = false;
-        state.user.name = action.payload.name;
-        state.user.email = action.payload.email;
+        state.name = action.payload.name;
+        state.email = action.payload.email;
         state.isLoggedIn = true;
       })
       .addCase(checkCurrentUser.rejected, state => {
-        state.user = { name: null, email: null };
+        state.name = null;
+        state.email = null;
         state.isCheckingLogin = false;
       })
       .addCase(logout.fulfilled, state => {
