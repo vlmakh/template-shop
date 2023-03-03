@@ -9,8 +9,12 @@ import {
 } from './SharedLayout.styled';
 import { LogoVM } from 'components/LogoVM/LogoVM';
 import { UserMenu } from 'components/UserMenu/UserMenu';
+import { useSelector } from 'react-redux';
+import { selectIsLoggedIn } from 'redux/selectors';
 
-export const SharedLayout = ({ isLoggedIn, setIsLoggedIn }) => {
+export const SharedLayout = () => {
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+
   return (
     <Layout>
       <Header>
@@ -20,7 +24,7 @@ export const SharedLayout = ({ isLoggedIn, setIsLoggedIn }) => {
         </Nav>
 
         {isLoggedIn ? (
-          <UserMenu setIsLoggedIn={setIsLoggedIn} />
+          <UserMenu />
         ) : (
           <LayoutLink to="/login">Login/Register</LayoutLink>
         )}

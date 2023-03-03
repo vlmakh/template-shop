@@ -1,8 +1,15 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { register, login, checkCurrentUser, logout } from './operations';
+import {
+  register,
+  login,
+  loginGoogle,
+  checkCurrentUser,
+  logout,
+} from './operations';
 
 const initialState = {
-  user: { name: null, email: null },
+  name: null,
+  email: null,
   token: null,
   isLoggedIn: false,
   isCheckingLogin: false,
@@ -33,6 +40,21 @@ export const authSlice = createSlice({
         state.user = { name: null, email: null };
         state.isCheckingLogin = false;
       })
+      .addCase(loginGoogle.fulfilled, (state, action) => {
+        // console.log(action);
+        state.name = action.payload.displayName;
+        state.email = action.payload.email;
+        state.token = action.payload.accessToken;
+        state.isLoggedIn = true;
+        state.isCheckingLogin = false;
+      })
+      .addCase(loginGoogle.rejected, state => {
+        state.name = null;
+        state.email = null;
+        state.token = null;
+        state.isLoggedIn = false;
+        state.isCheckingLogin = false;
+      })
       .addCase(checkCurrentUser.fulfilled, (state, action) => {
         state.isCheckingLogin = false;
         state.user.name = action.payload.name;
@@ -44,13 +66,15 @@ export const authSlice = createSlice({
         state.isCheckingLogin = false;
       })
       .addCase(logout.fulfilled, state => {
-        state.user = { name: null, email: null };
+        state.name = null;
+        state.email = null;
         state.token = null;
         state.isLoggedIn = false;
         state.isCheckingLogin = false;
       })
       .addCase(logout.rejected, state => {
-        state.user = { name: null, email: null };
+        state.name = null;
+        state.email = null;
         state.token = null;
         state.isLoggedIn = false;
         state.isCheckingLogin = false;
@@ -60,6 +84,7 @@ export const authSlice = createSlice({
           register.pending,
           login.pending,
           logout.pending,
+          loginGoogle.pending,
           checkCurrentUser.pending
         ),
         state => {

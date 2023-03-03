@@ -9,51 +9,24 @@ import { RegisterPage } from 'pages/RegisterPage';
 import { PersonalPage } from 'pages/PersonalPage';
 import { ShoppingCart } from 'pages/ShoppingCart';
 import { Routes, Route } from 'react-router-dom';
-import { useState } from 'react';
 
 export const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
-
-  const handleIsLoggedIn = () => {
-    setIsLoggedIn(!isLoggedIn);
-  };
+  console.log(process.env)
 
   return (
     <ThemeProvider theme={theme}>
       <Routes>
-        <Route
-          path="/"
-          element={
-            <SharedLayout
-              isLoggedIn={isLoggedIn}
-              setIsLoggedIn={handleIsLoggedIn}
-            />
-          }
-        >
+        <Route path="/" element={<SharedLayout />}>
           <Route index element={<HomePage />} />
           <Route path="products" element={<ProductsPage />} />
           <Route
             path="products/:productId"
             element={<ProductItemPage />}
           ></Route>
-          <Route
-            path="login"
-            element={
-              <LoginPage
-                isLoggedIn={isLoggedIn}
-                setIsLoggedIn={handleIsLoggedIn}
-              />
-            }
-          />
+          <Route path="login" element={<LoginPage />} />
           <Route path="register" element={<RegisterPage />} />
-          <Route
-            path="cabinet"
-            element={<PersonalPage isLoggedIn={isLoggedIn} />}
-          />
-          <Route
-            path="cart"
-            element={<ShoppingCart isLoggedIn={isLoggedIn} />}
-          />
+          <Route path="cabinet" element={<PersonalPage />} />
+          <Route path="cart" element={<ShoppingCart />} />
         </Route>
       </Routes>
     </ThemeProvider>

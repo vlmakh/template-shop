@@ -1,6 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 // import toast from 'react-hot-toast';
+import { auth } from 'utils/firebase';
+import firebase from 'firebase/compat/app';
 
 axios.defaults.baseURL = 'https://fakestoreapi.com/';
 // const errorMsg = "Something's wrong. Please update page and try again";
@@ -54,6 +56,13 @@ export const register = createAsyncThunk(
     }
   }
 );
+
+export const loginGoogle = createAsyncThunk('auth/loginGoogle', async () => {
+  const provider = new firebase.auth.GoogleAuthProvider();
+  const { user } = await auth.signInWithPopup(provider);
+  // console.log(user._delegate);
+  return user._delegate;
+});
 
 export const login = createAsyncThunk(
   'auth/login',

@@ -1,11 +1,15 @@
 import { LayoutLink } from 'components/SharedLayout/SharedLayout.styled';
 import { UserMenuBox } from './UserMenu.styled';
 import { auth } from 'utils/firebase';
+import { useDispatch } from 'react-redux';
+import { logout } from 'redux/operations';
 
-export const UserMenu = ({ setIsLoggedIn }) => {
+export const UserMenu = () => {
+  const dispatch = useDispatch();
+
   const handleLogout = async () => {
     await auth.signOut();
-    setIsLoggedIn(false);
+    dispatch(logout());
   };
 
   return (
