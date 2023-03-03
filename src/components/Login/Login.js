@@ -10,6 +10,8 @@ import { Formik } from 'formik';
 // import { login } from 'redux/operations';
 import * as yup from 'yup';
 // import { selectIsCheckingLogin } from 'redux/selectors';
+import { auth } from 'utils/firebase';
+import firebase from 'firebase/compat/app';
 
 let schema = yup.object().shape({
   email: yup.string().email().required(),
@@ -19,6 +21,17 @@ let schema = yup.object().shape({
 export const Login = ({ setIsLoggedIn }) => {
   // const dispatch = useDispatch();
   // const isCheckingLogin = useSelector(selectIsCheckingLogin);
+
+  const loginGoogle = async () => {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    const { user } = await auth.signInWithPopup(provider);
+    setIsLoggedIn(true);
+    console.log(user);
+  };
+
+  // const handleLoginGoogle = () => {
+  // setIsLoggedIn();
+  // }
 
   const handleSubmit = (values, { resetForm }) => {
     // dispatch(login(values));
@@ -53,7 +66,7 @@ export const Login = ({ setIsLoggedIn }) => {
         </Label>
 
         <Button type="submit">Login</Button>
-        <Button type="button" onClick={setIsLoggedIn}>
+        <Button type="button" onClick={loginGoogle}>
           Login with Google
         </Button>
       </StyledForm>
