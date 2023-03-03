@@ -3,6 +3,7 @@ import axios from 'axios';
 // import toast from 'react-hot-toast';
 
 axios.defaults.baseURL = 'https://fakestoreapi.com/';
+// const errorMsg = "Something's wrong. Please update page and try again";
 
 export const fetchProducts = createAsyncThunk(
   'products/fetchProducts',
@@ -38,7 +39,6 @@ const token = {
     axios.defaults.headers.common.Authorization = '';
   },
 };
-// const errorMsg = "Something's wrong. Please update page and try again";
 
 export const register = createAsyncThunk(
   'auth/register',
