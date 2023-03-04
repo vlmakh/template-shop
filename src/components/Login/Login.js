@@ -6,10 +6,11 @@ import {
   Button,
 } from './Login.styled';
 import { Formik } from 'formik';
-import { useDispatch } from 'react-redux';
-import { loginGoogle } from 'redux/operations';
+import { useDispatch, useSelector } from 'react-redux';
+import { loginGoogle, login } from 'redux/operations';
 import * as yup from 'yup';
-// import { selectIsCheckingLogin } from 'redux/selectors';
+import { selectIsCheckingLogin } from 'redux/selectors';
+import { useNavigate } from 'react-router-dom';
 
 let schema = yup.object().shape({
   email: yup.string().email().required(),
@@ -18,15 +19,17 @@ let schema = yup.object().shape({
 
 export const Login = () => {
   const dispatch = useDispatch();
-  // const isCheckingLogin = useSelector(selectIsCheckingLogin);
+  const isCheckingLogin = useSelector(selectIsCheckingLogin);
+  const { push } = useNavigate();
 
   const handleLoginGoogle = () => {
     dispatch(loginGoogle());
   };
 
   const handleSubmit = (values, { resetForm }) => {
-    // dispatch(login(values));
+    dispatch(login(values));
     resetForm();
+    push('/cabinet');
   };
 
   return (
@@ -56,8 +59,14 @@ export const Login = () => {
           <StyledErrorMsg component="div" name="password" />
         </Label>
 
-        <Button type="submit">Login</Button>
-        <Button type="button" onClick={handleLoginGoogle}>
+        <Button type="submit" disabled={isCheckingLogin}>
+          Login
+        </Button>
+        <Button
+          type="button"
+          onClick={handleLoginGoogle}
+          disabled={isCheckingLogin}
+        >
           Login with Google
         </Button>
       </StyledForm>

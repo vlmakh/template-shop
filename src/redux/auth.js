@@ -21,25 +21,17 @@ export const authSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(register.fulfilled, (state, action) => {
-        state.user = action.payload.user;
-        state.token = action.payload.token;
+        console.log(action.payload);
+        state.email = action.payload.email;
+        state.token = action.payload.accessToken;
         state.isLoggedIn = true;
-        state.isCheckingLogin = false;
-      })
-      .addCase(register.rejected, state => {
-        state.name = null;
-        state.email = null;
         state.isCheckingLogin = false;
       })
       .addCase(login.fulfilled, (state, action) => {
-        state.user = action.payload.user;
-        state.token = action.payload.token;
+        console.log(action.payload);
+        state.email = action.payload.email;
+        state.token = action.payload.accessToken;
         state.isLoggedIn = true;
-        state.isCheckingLogin = false;
-      })
-      .addCase(login.rejected, state => {
-        state.name = null;
-        state.email = null;
         state.isCheckingLogin = false;
       })
       .addCase(loginGoogle.fulfilled, (state, action) => {
@@ -50,38 +42,29 @@ export const authSlice = createSlice({
         state.isLoggedIn = true;
         state.isCheckingLogin = false;
       })
-      .addCase(loginGoogle.rejected, state => {
-        state.name = null;
-        state.email = null;
-        state.token = null;
-        state.isLoggedIn = false;
-        state.isCheckingLogin = false;
-      })
       .addCase(checkCurrentUser.fulfilled, (state, action) => {
         state.isCheckingLogin = false;
         state.name = action.payload.name;
         state.email = action.payload.email;
         state.isLoggedIn = true;
       })
-      .addCase(checkCurrentUser.rejected, state => {
-        state.name = null;
-        state.email = null;
-        state.isCheckingLogin = false;
-      })
-      .addCase(logout.fulfilled, state => {
-        state.name = null;
-        state.email = null;
-        state.token = null;
-        state.isLoggedIn = false;
-        state.isCheckingLogin = false;
-      })
-      .addCase(logout.rejected, state => {
-        state.name = null;
-        state.email = null;
-        state.token = null;
-        state.isLoggedIn = false;
-        state.isCheckingLogin = false;
-      })
+      .addMatcher(
+        isAnyOf(
+          logout.fulfilled,
+          register.rejected,
+          login.rejected,
+          loginGoogle.rejected,
+          checkCurrentUser.rejected,
+          logout.rejected
+        ),
+        state => {
+          state.name = null;
+          state.email = null;
+          state.token = null;
+          state.isLoggedIn = false;
+          state.isCheckingLogin = false;
+        }
+      )
       .addMatcher(
         isAnyOf(
           register.pending,
@@ -95,5 +78,16 @@ export const authSlice = createSlice({
         }
       );
   },
-  reducers: {},
+  reducers: {
+    setUset(state, action) {
+      state.email = action.payload.email;
+      state.name = action.payload.displayName;
+      state.token = action.payload.accessToken;
+    },
+    removeUser(state) {
+      state.email = null;
+      state.name = null;
+      state.token = null;
+    },
+  },
 });

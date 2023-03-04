@@ -6,30 +6,32 @@ import {
   StyledErrorMsg,
 } from 'components/Login/Login.styled';
 import { Formik } from 'formik';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { register } from 'redux/operations';
+import { useDispatch, useSelector } from 'react-redux';
+import { register } from 'redux/operations';
 import * as yup from 'yup';
-// import { selectIsCheckingLogin } from 'redux/selectors';
+import { selectIsCheckingLogin } from 'redux/selectors';
+import { useNavigate } from 'react-router-dom';
 
 let schema = yup.object().shape({
-  name: yup.string().required(),
   email: yup.string().email().required(),
-  password: yup.string().min(7).required(),
+  password: yup.string().min(6).required(),
 });
 
 export const Register = () => {
-  // const dispatch = useDispatch();
-  // const isCheckingLogin = useSelector(selectIsCheckingLogin);
+  const dispatch = useDispatch();
+  const isCheckingLogin = useSelector(selectIsCheckingLogin);
+  const { push } = useNavigate();
 
   const handleSubmit = (values, { resetForm }) => {
-    // dispatch(register(values));
+    dispatch(register(values));
     resetForm();
+    push('/cabinet');
   };
+
   return (
     <Formik
       onSubmit={handleSubmit}
       initialValues={{
-        name: '',
         email: '',
         password: '',
       }}
@@ -40,12 +42,6 @@ export const Register = () => {
           <span>email</span>
           <StyledField name="email" type="email" placeholder=" "></StyledField>
           <StyledErrorMsg component="div" name="email" />
-        </Label>
-
-        <Label htmlFor="name">
-          <span>name</span>
-          <StyledField name="name" type="text" placeholder=" "></StyledField>
-          <StyledErrorMsg component="div" name="name" />
         </Label>
 
         <Label htmlFor="password">
@@ -59,7 +55,9 @@ export const Register = () => {
           <StyledErrorMsg component="div" name="password" />
         </Label>
 
-        <Button type="submit">Register</Button>
+        <Button type="submit" disabled={isCheckingLogin}>
+          Register
+        </Button>
       </StyledForm>
     </Formik>
   );
