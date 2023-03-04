@@ -5,6 +5,7 @@ import { BuyBtnPage } from 'components/Base/Base';
 import { fetchProductItem } from 'redux/operations';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectProductItem, selectIsLoadingProduct } from 'redux/selectors';
+import { addProduct } from 'redux/cart';
 
 export const ProductItemPage = () => {
   //   const [productData, setProductData] = useState(null);
@@ -16,6 +17,11 @@ export const ProductItemPage = () => {
   useEffect(() => {
     dispatch(fetchProductItem(params.productId));
   }, [dispatch, params.productId]);
+
+  const handleBuy = () => {
+    // console.log(params.productId);
+    dispatch(addProduct(+params.productId));
+  };
 
   return (
     <>
@@ -39,7 +45,9 @@ export const ProductItemPage = () => {
 
               <p>{productData.description}</p>
               <p>{productData.price} USD</p>
-              <BuyBtnPage type="button">Buy</BuyBtnPage>
+              <BuyBtnPage type="button" onClick={handleBuy}>
+                Buy
+              </BuyBtnPage>
             </Box>
           )}
         </Box>

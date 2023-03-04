@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchProducts } from 'redux/operations';
 import { selectProducts, selectIsLoading } from 'redux/selectors';
+import { addProduct } from 'redux/cart';
 
 export const ProductsPage = () => {
   const isLoading = useSelector(selectIsLoading);
@@ -15,6 +16,11 @@ export const ProductsPage = () => {
   useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch]);
+
+  const handleBuy = id => {
+    // console.log(id);
+    dispatch(addProduct(id));
+  };
 
   return (
     <>
@@ -30,7 +36,9 @@ export const ProductsPage = () => {
                   <ProductLink to={`${product.id}`}>
                     <ProductCard product={product} />
                   </ProductLink>
-                  <BuyBtn type="button">Buy</BuyBtn>
+                  <BuyBtn type="button" onClick={() => handleBuy(product.id)}>
+                    Buy
+                  </BuyBtn>
                 </Item>
               );
             })}

@@ -64,7 +64,12 @@ export const loginGoogle = createAsyncThunk(
       const provider = new firebase.auth.GoogleAuthProvider();
       const { user } = await auth.signInWithPopup(provider);
       // console.log(user._delegate);
-      return user._delegate;
+      const result = {
+        ...user._delegate.displayName,
+        ...user._delegate.email,
+        ...user._delegate.accessToken,
+      };
+      return result;
     } catch (error) {
       // toast.error('There is mistake in login or password, please try again');
       return thunkAPI.rejectWithValue('');
