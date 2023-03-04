@@ -18,7 +18,6 @@ export const ProductsPage = () => {
   }, [dispatch]);
 
   const handleBuy = id => {
-    // console.log(id);
     dispatch(addProduct(id));
   };
 
@@ -28,7 +27,6 @@ export const ProductsPage = () => {
 
       {!isLoading && (
         <Box pt={5} textAlign="center">
-          <h2>PRODUCTS PAGE</h2>
           <List>
             {products.map(product => {
               return (

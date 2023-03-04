@@ -9,6 +9,7 @@ import { RegisterPage } from 'pages/RegisterPage';
 import { PersonalPage } from 'pages/PersonalPage';
 import { ShoppingCart } from 'pages/ShoppingCart';
 import { Routes, Route } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
 
 export const App = () => {
   return (
@@ -27,6 +28,14 @@ export const App = () => {
           <Route path="cart" element={<ShoppingCart />} />
         </Route>
       </Routes>
+
+      <Toaster
+        position="top-center"
+        toastOptions={{
+          duration: 3000,
+          
+        }}
+      />
     </ThemeProvider>
   );
 };

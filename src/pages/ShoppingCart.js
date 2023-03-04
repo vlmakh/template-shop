@@ -16,7 +16,6 @@ export const ShoppingCart = () => {
   useEffect(() => {
     fetchSelected(selected).then(data => {
       setCart(data);
-      // console.log(data);
     });
   }, [selected]);
 

@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-// import toast from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import { auth } from 'utils/firebase';
 import firebase from 'firebase/compat/app';
 import {
@@ -11,7 +11,7 @@ import {
 } from 'firebase/auth';
 
 axios.defaults.baseURL = 'https://fakestoreapi.com/';
-// const errorMsg = "Something's wrong. Please update page and try again";
+const errorMsg = "Something's wrong. Please update page and try again";
 
 export const fetchProducts = createAsyncThunk(
   'products/fetchProducts',
@@ -20,25 +20,27 @@ export const fetchProducts = createAsyncThunk(
       const response = await axios.get(`/products`);
       return response.data;
     } catch (error) {
-      // toast.error(errorMsg);
-      console.log(error);
+      toast.error(errorMsg);
     }
   }
 );
 
 export const fetchSelected = async array => {
-  const arrayOfProducts = array.map(async productId => {
-    return await axios
-      .get(`/products/${productId}`)
-      .then(response => {
-        return response.data;
-      })
-      .catch(error => console.log(error));
-  });
+  try {
+    const arrayOfProducts = array.map(async productId => {
+      return await axios
+        .get(`/products/${productId}`)
+        .then(response => {
+          return response.data;
+        })
+        .catch(error => console.log(error));
+    });
 
-  const response = await Promise.all(arrayOfProducts);
-  // console.log(response);
-  return response;
+    const response = await Promise.all(arrayOfProducts);
+    return response;
+  } catch (error) {
+    toast.error(errorMsg);
+  }
 };
 
 export const fetchProductItem = createAsyncThunk(
@@ -48,8 +50,7 @@ export const fetchProductItem = createAsyncThunk(
       const response = await axios.get(`/products/${id}`);
       return response.data;
     } catch (error) {
-      // toast.error(errorMsg);
-      console.log(error);
+      toast.error(errorMsg);
     }
   }
 );
@@ -66,9 +67,8 @@ export const register = createAsyncThunk(
       );
       const { email, accessToken } = response.user;
       return { email, accessToken };
-      // toast.success(`${response.data.user.name} was registered`);
     } catch (error) {
-      // toast.error('Probably such email was alredy registered');
+      toast.error('Probably such email was alredy registered');
       return thunkAPI.rejectWithValue('');
     }
   }
@@ -83,7 +83,7 @@ export const loginGoogle = createAsyncThunk(
       const { email, accessToken, displayName } = user._delegate;
       return { email, accessToken, displayName };
     } catch (error) {
-      // toast.error('There is mistake in login or password, please try again');
+      toast.error('There is mistake in login or password, please try again');
       return thunkAPI.rejectWithValue('');
     }
   }
@@ -102,11 +102,20 @@ export const login = createAsyncThunk(
       const { email, accessToken } = response.user;
       return { email, accessToken };
     } catch (error) {
-      // toast.error('There is mistake in login or password, please try again');
+      toast.error('There is mistake in login or password, please try again');
       return thunkAPI.rejectWithValue('');
     }
   }
 );
+
+export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
+  try {
+    await auth.signOut();
+  } catch (error) {
+    toast.error(errorMsg);
+    return thunkAPI.rejectWithValue('');
+  }
+});
 
 export const checkCurrentUser = createAsyncThunk(
   'auth/current',
@@ -125,16 +134,7 @@ export const checkCurrentUser = createAsyncThunk(
       console.log(response);
       return response;
     } catch (error) {
-      // toast.error('Please try to login again');
+      toast.error('Please try to login again');
     }
   }
 );
-
-export const logout = createAsyncThunk('auth/logout', async () => {
-  try {
-    await axios.post(`/users/logout`);
-    // token.unset();
-  } catch (error) {
-    // toast.error(errorMsg);
-  }
-});
