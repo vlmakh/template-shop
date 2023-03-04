@@ -18,7 +18,7 @@ import { cartSlice } from './cart';
 const authPersistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['token'],
+  // whitelist: ['token'],
 };
 
 // const cartPersistConfig = {
