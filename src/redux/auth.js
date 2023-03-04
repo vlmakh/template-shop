@@ -21,21 +21,18 @@ export const authSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(register.fulfilled, (state, action) => {
-        console.log(action.payload);
         state.email = action.payload.email;
         state.token = action.payload.accessToken;
         state.isLoggedIn = true;
         state.isCheckingLogin = false;
       })
       .addCase(login.fulfilled, (state, action) => {
-        console.log(action.payload);
         state.email = action.payload.email;
         state.token = action.payload.accessToken;
         state.isLoggedIn = true;
         state.isCheckingLogin = false;
       })
       .addCase(loginGoogle.fulfilled, (state, action) => {
-        // console.log(action.payload);
         state.name = action.payload.displayName;
         state.email = action.payload.email;
         state.token = action.payload.accessToken;
@@ -78,16 +75,5 @@ export const authSlice = createSlice({
         }
       );
   },
-  reducers: {
-    setUset(state, action) {
-      state.email = action.payload.email;
-      state.name = action.payload.displayName;
-      state.token = action.payload.accessToken;
-    },
-    removeUser(state) {
-      state.email = null;
-      state.name = null;
-      state.token = null;
-    },
-  },
+  reducers: {},
 });
