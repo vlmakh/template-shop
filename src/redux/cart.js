@@ -6,12 +6,9 @@ export const cartSlice = createSlice({
   reducers: {
     addProduct: (state, action) => {
       state.items.push(action.payload);
-      // console.log(action.payload);
-      // return;
     },
     deleteProduct: (state, action) => {
-      // console.log(action.payload);
-      return [...state.items.filter(el => el !== action.payload)];
+      state.items = state.items.filter(el => el !== action.payload);
     },
   },
 });
