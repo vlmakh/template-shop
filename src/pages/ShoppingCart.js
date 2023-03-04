@@ -13,6 +13,8 @@ export const ShoppingCart = () => {
   const [cart, setCart] = useState([]);
   const dispatch = useDispatch();
 
+  console.log(selected);
+
   useEffect(() => {
     fetchSelected(selected).then(data => {
       setCart(data);

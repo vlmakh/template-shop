@@ -2,16 +2,16 @@ import { createSlice } from '@reduxjs/toolkit';
 
 export const cartSlice = createSlice({
   name: 'cart',
-  initialState: [],
+  initialState: { items: [] },
   reducers: {
     addProduct: (state, action) => {
-      state.push(action.payload);
+      state.items.push(action.payload);
       // console.log(action.payload);
       // return;
     },
     deleteProduct: (state, action) => {
       // console.log(action.payload);
-      return [...state.filter(el => el !== action.payload)];
+      return [...state.items.filter(el => el !== action.payload)];
     },
   },
 });
