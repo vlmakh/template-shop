@@ -20,7 +20,7 @@ let schema = yup.object().shape({
 export const Login = () => {
   const dispatch = useDispatch();
   const isCheckingLogin = useSelector(selectIsCheckingLogin);
-  const { push } = useNavigate();
+  const navigate = useNavigate();
 
   const handleLoginGoogle = () => {
     dispatch(loginGoogle());
@@ -29,7 +29,7 @@ export const Login = () => {
   const handleSubmit = (values, { resetForm }) => {
     dispatch(login(values));
     resetForm();
-    push('/cabinet');
+    navigate('/cabinet');
   };
 
   return (

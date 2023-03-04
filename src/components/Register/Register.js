@@ -20,12 +20,12 @@ let schema = yup.object().shape({
 export const Register = () => {
   const dispatch = useDispatch();
   const isCheckingLogin = useSelector(selectIsCheckingLogin);
-  const { push } = useNavigate();
+  const navigate = useNavigate();
 
   const handleSubmit = (values, { resetForm }) => {
     dispatch(register(values));
     resetForm();
-    push('/cabinet');
+    navigate('/cabinet');
   };
 
   return (
