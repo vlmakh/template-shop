@@ -15,23 +15,37 @@ const errorMsg = "Something's wrong. Please update page and try again";
 
 export const fetchProducts = createAsyncThunk(
   'products/fetchProducts',
-  async _ => {
+  async (_, thunkAPI) => {
     try {
       const response = await axios.get(`/products`);
       return response.data;
     } catch (error) {
       toast.error(errorMsg);
+      return thunkAPI.rejectWithValue('');
+    }
+  }
+);
+
+export const fetchProductById = createAsyncThunk(
+  'products/fetchProductById',
+  async (id, thunkAPI) => {
+    try {
+      const response = await axios.get(`/products/${id}`);
+      return response.data;
+    } catch (error) {
+      toast.error(errorMsg);
+      return thunkAPI.rejectWithValue('');
     }
   }
 );
 
 export const fetchSelected = async array => {
   try {
-    const arrayOfProducts = array.map(async productId => {
+    const arrayOfProducts = array.map(async ({ id, qty }) => {
       return await axios
-        .get(`/products/${productId}`)
+        .get(`/products/${id}`)
         .then(response => {
-          return response.data;
+          return { ...response.data, qty };
         })
         .catch(error => console.log(error));
     });

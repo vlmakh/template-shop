@@ -13,6 +13,8 @@ export const ShoppingCart = () => {
   const [cart, setCart] = useState([]);
   const dispatch = useDispatch();
 
+  console.log(selected);
+
   useEffect(() => {
     fetchSelected(selected).then(data => {
       setCart(data);
@@ -21,7 +23,7 @@ export const ShoppingCart = () => {
 
   const totalSum = arr => {
     return arr.reduce((acc, el) => {
-      return acc + Number(el.price);
+      return acc + el.price * el.qty;
     }, 0);
   };
 
@@ -44,6 +46,7 @@ export const ShoppingCart = () => {
               <tr>
                 <th>Name</th>
                 <th>Price</th>
+                <th>Pcs</th>
                 <th></th>
               </tr>
             </thead>
@@ -56,6 +59,7 @@ export const ShoppingCart = () => {
                       <Link to={`/products/${item.id}`}>{item.title} </Link>
                     </td>
                     <td>{item.price.toFixed(2)}</td>
+                    <td>{item.qty}</td>
                     <td>
                       <button
                         type="button"
@@ -73,6 +77,7 @@ export const ShoppingCart = () => {
               <tr>
                 <td>Total USD: </td>
                 <td>{totalSum(cart).toFixed(2)}</td>
+                <td></td>
                 <td></td>
               </tr>
             </tfoot>
