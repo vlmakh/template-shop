@@ -12,7 +12,7 @@ export const CardWrap = styled.div`
   padding: 4px;
   border: 1px solid grey;
   border-top-left-radius: 8px;
-  border-top-right-radius: 8px;  
+  border-top-right-radius: 8px;
   color: #212121;
 `;
 
@@ -29,11 +29,11 @@ export const BuyBtn = styled.button`
   transition: background-color 250ms ease-in;
 
   :hover {
-    background-color: ${p => p.theme.colors.accent}
+    background-color: ${p => p.theme.colors.accent};
   }
 `;
 
 export const ProductLink = styled(NavLink)`
-text-align: center;
+  text-align: center;
   text-decoration: none;
 `;

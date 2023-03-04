@@ -21,6 +21,8 @@ export const BuyBtnPage = styled.button`
   border-radius: 8px;
   cursor: pointer;
 
+  transition: background-color 250ms ease-in;
+
   :hover {
     background-color: ${p => p.theme.colors.accent};
   }

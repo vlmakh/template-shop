@@ -8,7 +8,6 @@ import { selectProductItem, selectIsLoadingProduct } from 'redux/selectors';
 import { addProduct } from 'redux/cart';
 
 export const ProductItemPage = () => {
-  //   const [productData, setProductData] = useState(null);
   const params = useParams();
   const productData = useSelector(selectProductItem);
   const isLoading = useSelector(selectIsLoadingProduct);
@@ -19,7 +18,6 @@ export const ProductItemPage = () => {
   }, [dispatch, params.productId]);
 
   const handleBuy = () => {
-    // console.log(params.productId);
     dispatch(addProduct(+params.productId));
   };
 
