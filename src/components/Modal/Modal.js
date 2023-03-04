@@ -4,7 +4,7 @@ import { createPortal } from 'react-dom';
 
 const modalRoot = document.querySelector('#modal-root');
 
-export default function Modal({ onClose, children }) {
+export function Modal({ onClose, children }) {
   useEffect(() => {
     window.addEventListener('keydown', handleEscape);
 

@@ -3,22 +3,38 @@ import { ProductCard } from 'components/ProductCard/ProductCard';
 import { BuyBtn, ProductLink } from 'components/ProductCard/ProductCard.styled';
 import { List, Item } from 'components/Base/Base';
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { fetchProducts } from 'redux/operations';
-import { selectProducts, selectIsLoading } from 'redux/selectors';
+import {
+  selectProducts,
+  selectIsLoading,
+  selectIsLoggedIn,
+} from 'redux/selectors';
 import { addProduct } from 'redux/cart';
+import { Modal } from 'components/Modal/Modal';
+import { InfoBox } from 'components/InfoBox/InfoBox';
 
 export const ProductsPage = () => {
   const isLoading = useSelector(selectIsLoading);
   const products = useSelector(selectProducts);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
   const dispatch = useDispatch();
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch]);
 
+  const toggleModal = () => {
+    setShowModal(!showModal);
+  };
+
   const handleBuy = id => {
-    dispatch(addProduct(id));
+    if (isLoggedIn) {
+      dispatch(addProduct(id));
+      return;
+    }
+    setShowModal(true);
   };
 
   return (
@@ -42,6 +58,12 @@ export const ProductsPage = () => {
             })}
           </List>
         </Box>
+      )}
+
+      {showModal && (
+        <Modal onClose={toggleModal}>
+          <InfoBox msg="Please Login firstly" />
+        </Modal>
       )}
     </>
   );
