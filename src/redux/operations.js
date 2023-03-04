@@ -63,12 +63,8 @@ export const loginGoogle = createAsyncThunk(
     try {
       const provider = new firebase.auth.GoogleAuthProvider();
       const { user } = await auth.signInWithPopup(provider);
-      // console.log(user._delegate);
-      const result = {
-        ...user._delegate.displayName,
-        ...user._delegate.email,
-        ...user._delegate.accessToken,
-      };
+      const result = { ...user._delegate };
+      // console.log(result);
       return result;
     } catch (error) {
       // toast.error('There is mistake in login or password, please try again');
@@ -119,3 +115,18 @@ export const logout = createAsyncThunk('auth/logout', async () => {
     // toast.error(errorMsg);
   }
 });
+
+export const fetchSelected = async array => {
+  const arrayOfProducts = array.map(async productId => {
+    return await axios
+      .get(`/products/${productId}`)
+      .then(response => {
+        return response.data;
+      })
+      .catch(error => console.log(error));
+  });
+
+  const response = await Promise.all(arrayOfProducts);
+  // console.log(response);
+  return response;
+};

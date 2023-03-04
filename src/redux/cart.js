@@ -12,7 +12,10 @@ export const cartSlice = createSlice({
     deleteProduct: (state, action) => {
       return [...state.filter(product => product.id !== action.payload)];
     },
+    fetchSelected: state => {
+      return state;
+    },
   },
 });
 
-export const { addProduct, deleteProduct } = cartSlice.actions;
+export const { addProduct, deleteProduct, fetchSelected } = cartSlice.actions;

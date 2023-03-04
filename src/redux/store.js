@@ -21,20 +21,20 @@ const authPersistConfig = {
   whitelist: ['token'],
 };
 
-const cartPersistConfig = {
-  key: 'cart',
-  storage,
-};
+// const cartPersistConfig = {
+//   key: 'cart',
+//   storage,
+// };
 
 const authPersistedReducer = persistReducer(
   authPersistConfig,
   authSlice.reducer
 );
 
-const cartPersistedReducer = persistReducer(
-  cartPersistConfig,
-  cartSlice.reducer
-);
+// const cartPersistedReducer = persistReducer(
+//   cartPersistConfig,
+//   cartSlice.reducer
+// );
 
 export const store = configureStore({
   reducer: {

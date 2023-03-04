@@ -7,3 +7,5 @@ export const selectIsLoadingProduct = state => state.productItem.isLoading;
 export const selectUser = state => state.auth;
 export const selectIsCheckingLogin = state => state.auth.isCheckingLogin;
 export const selectIsLoggedIn = state => state.auth.isLoggedIn;
+
+export const selectCart = state => state.cart;

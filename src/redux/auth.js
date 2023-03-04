@@ -43,7 +43,7 @@ export const authSlice = createSlice({
         state.isCheckingLogin = false;
       })
       .addCase(loginGoogle.fulfilled, (state, action) => {
-        // console.log(action);
+        // console.log(action.payload);
         state.name = action.payload.displayName;
         state.email = action.payload.email;
         state.token = action.payload.accessToken;
