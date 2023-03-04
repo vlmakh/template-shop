@@ -12,6 +12,7 @@ import { Routes, Route } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 
 export const App = () => {
+
   return (
     <ThemeProvider theme={theme}>
       <Routes>
@@ -33,7 +34,6 @@ export const App = () => {
         position="top-center"
         toastOptions={{
           duration: 3000,
-          
         }}
       />
     </ThemeProvider>

@@ -7,7 +7,6 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  onAuthStateChanged,
 } from 'firebase/auth';
 
 axios.defaults.baseURL = 'https://fakestoreapi.com/';
@@ -130,25 +129,3 @@ export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
     return thunkAPI.rejectWithValue('');
   }
 });
-
-export const checkCurrentUser = createAsyncThunk(
-  'auth/current',
-  async (user, thunkAPI) => {
-    const state = thunkAPI.getState();
-
-    if (state.auth.token === null) {
-      return thunkAPI.rejectWithValue('');
-    }
-
-    try {
-      const auth = getAuth();
-      const response = await onAuthStateChanged(auth, user);
-
-      console.log(user);
-      console.log(response);
-      return response;
-    } catch (error) {
-      toast.error('Please try to login again');
-    }
-  }
-);
