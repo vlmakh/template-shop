@@ -8,7 +8,7 @@ export const ShopTable = styled.table`
   th {
     padding: 8px 0;
     text-transform: uppercase;
-    background-color: darkcyan;
+    background-color: ${p => p.theme.colors.accent};
     color: #fff;
   }
 

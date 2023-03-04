@@ -1,4 +1,4 @@
-import { LayoutLink } from 'components/SharedLayout/SharedLayout.styled';
+import { StyledLink, StyledLinkBtn } from 'components/Base/Base';
 import { UserMenuBox } from './UserMenu.styled';
 import { auth } from 'utils/firebase';
 import { useDispatch } from 'react-redux';
@@ -14,13 +14,13 @@ export const UserMenu = () => {
 
   return (
     <UserMenuBox>
-      <LayoutLink to="/cart">Shopping Cart</LayoutLink>
+      <StyledLink to="/cart">Shopping Cart</StyledLink>
 
-      <LayoutLink to="/cabinet">Cabinet</LayoutLink>
+      <StyledLink to="/cabinet">Cabinet</StyledLink>
 
-      <button type="button" onClick={handleLogout}>
+      <StyledLinkBtn type="button" onClick={handleLogout}>
         Logout
-      </button>
+      </StyledLinkBtn>
     </UserMenuBox>
   );
 };

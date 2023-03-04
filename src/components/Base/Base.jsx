@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { NavLink } from 'react-router-dom';
 
 export const List = styled.ul`
   display: flex;
@@ -23,5 +24,38 @@ export const BuyBtnPage = styled.button`
   :hover {
     background-color: ${p => p.theme.colors.accent};
   }
-
 `;
+
+export const StyledLink = styled(NavLink)`
+  font-size: 16px;
+  font-weight: 700;
+  color: #212121;
+  text-decoration: none;
+  cursor: pointer;
+
+  transition: color 250ms ease-in;
+
+  &.active {
+    font-weight: 700;
+    color: ${(p) => p.theme.colors.accent};
+  }
+
+  :hover {    
+    color: ${(p) => p.theme.colors.accent};
+  }
+`;
+
+export const StyledLinkBtn = styled.button`
+  font-size: 16px;
+  font-weight: 700;
+  color: #212121;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+
+  transition: color 250ms ease-in;
+
+  :hover {    
+    color: ${(p) => p.theme.colors.accent};
+  }
+`

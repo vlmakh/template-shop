@@ -1,12 +1,6 @@
 import { Outlet } from 'react-router-dom';
-import {
-  Layout,
-  LayoutLink,
-  Header,
-  Nav,
-  Footer,
-  MyLink,
-} from './SharedLayout.styled';
+import { Layout, Header, Nav, Footer, MyLink } from './SharedLayout.styled';
+import { StyledLink } from 'components/Base/Base';
 import { LogoVM } from 'components/LogoVM/LogoVM';
 import { UserMenu } from 'components/UserMenu/UserMenu';
 import { useSelector } from 'react-redux';
@@ -19,14 +13,14 @@ export const SharedLayout = () => {
     <Layout>
       <Header>
         <Nav>
-          <LayoutLink to="/">Home</LayoutLink>
-          <LayoutLink to="products">Products</LayoutLink>
+          <StyledLink to="/">Home</StyledLink>
+          <StyledLink to="products">Products</StyledLink>
         </Nav>
 
         {isLoggedIn ? (
           <UserMenu />
         ) : (
-          <LayoutLink to="/login">Login/Register</LayoutLink>
+          <StyledLink to="/login">Login/Register</StyledLink>
         )}
       </Header>
 

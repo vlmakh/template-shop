@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { NavLink } from 'react-router-dom';
 
 export const Layout = styled.div`
   display: grid;
@@ -30,23 +29,6 @@ export const Nav = styled.nav`
   gap: ${p => p.theme.space[4]}px;
 `;
 
-export const LayoutLink = styled(NavLink)`
-  font-size: 16px;
-  font-weight: 700;
-  color: #212121;
-  text-decoration: none;
-  cursor: pointer;
-
-  &.active {
-    font-weight: 700;color: ${(p) => p.theme.colors.accent};
-  }
-
-  :hover {
-    
-    color: ${(p) => p.theme.colors.accent};
-  }
-`;
-
 export const Footer = styled.div`
   display: flex;
   align-items: center;
@@ -56,12 +38,12 @@ export const Footer = styled.div`
   width: 100%;
   height: 36px;
   font-size: ${p => p.theme.fontSizes.xs};
-  color: ${p => p.theme.colors.main};
+  color: #212121;
   z-index: 100;
 `;
 
 export const MyLink = styled.a`
-  color: ${p => p.theme.colors.main};
+  color: #212121;
   font-size: ${p => p.theme.fontSizes.xs};
   font-weight: 700;
   text-decoration: none;

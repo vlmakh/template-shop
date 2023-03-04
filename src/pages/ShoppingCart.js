@@ -5,7 +5,7 @@ import { selectIsLoggedIn, selectCart } from 'redux/selectors';
 import { fetchSelected } from 'redux/operations';
 import { deleteProduct } from 'redux/cart';
 import { useEffect, useState } from 'react';
-import { ShopTable } from 'components/ShoppingList/ShoppingList.styled';
+import { ShopTable } from 'components/ShopTable/ShopTable.styled';
 
 export const ShoppingCart = () => {
   const selected = useSelector(selectCart);

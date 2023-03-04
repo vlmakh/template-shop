@@ -13,6 +13,7 @@ export const CardWrap = styled.div`
   border: 1px solid grey;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;  
+  color: #212121;
 `;
 
 export const BuyBtn = styled.button`
@@ -24,6 +25,8 @@ export const BuyBtn = styled.button`
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
   cursor: pointer;
+
+  transition: background-color 250ms ease-in;
 
   :hover {
     background-color: ${p => p.theme.colors.accent}
