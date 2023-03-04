@@ -1,8 +1,9 @@
 import { Box } from 'components/Box/Box';
 import { Navigate, Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { selectIsLoggedIn, selectCart } from 'redux/selectors';
 import { fetchSelected } from 'redux/operations';
+import { deleteProduct } from 'redux/cart';
 import { useEffect, useState } from 'react';
 import { ShopTable } from 'components/ShoppingList/ShoppingList.styled';
 
@@ -10,6 +11,7 @@ export const ShoppingCart = () => {
   const selected = useSelector(selectCart);
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const [cart, setCart] = useState([]);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     fetchSelected(selected).then(data => {
@@ -22,6 +24,10 @@ export const ShoppingCart = () => {
     return arr.reduce((acc, el) => {
       return acc + Number(el.price);
     }, 0);
+  };
+
+  const handleDelete = id => {
+    dispatch(deleteProduct(id));
   };
 
   return (
@@ -39,6 +45,7 @@ export const ShoppingCart = () => {
               <tr>
                 <th>Name</th>
                 <th>Price</th>
+                <th></th>
               </tr>
             </thead>
 
@@ -50,6 +57,14 @@ export const ShoppingCart = () => {
                       <Link to={`/products/${item.id}`}>{item.title} </Link>
                     </td>
                     <td>{item.price.toFixed(2)}</td>
+                    <td>
+                      <button
+                        type="button"
+                        onClick={() => handleDelete(item.id)}
+                      >
+                        X
+                      </button>
+                    </td>
                   </tr>
                 );
               })}
@@ -58,7 +73,8 @@ export const ShoppingCart = () => {
             <tfoot>
               <tr>
                 <td>Total USD: </td>
-                <td>{totalSum(cart)}</td>
+                <td>{totalSum(cart).toFixed(2)}</td>
+                <td></td>
               </tr>
             </tfoot>
           </ShopTable>
