@@ -25,5 +25,20 @@ export const productsSlice = createSlice({
         state.isLoading = false;
       });
   },
-  reducers: {},
+  reducers: {
+    priceup: state => {
+      state.items.sort((a, b) => a.price - b.price);
+    },
+    pricedown: state => {
+      state.items.sort((a, b) => b.price - a.price);
+    },
+    nameup: state => {
+      state.items.sort((a, b) => a.title.localeCompare(b.title));
+    },
+    namedown: state => {
+      state.items.sort((a, b) => b.title.localeCompare(a.title));
+    },
+  },
 });
+
+export const { priceup, pricedown, nameup, namedown } = productsSlice.actions;
