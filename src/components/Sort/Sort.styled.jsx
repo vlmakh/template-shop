@@ -21,6 +21,10 @@ export const SortBtn = styled(Button)`
   margin-top: 8px;
   width: 100%;
   padding: 8px 0;
-   border: 1px solid grey;
+  border: 1px solid grey;
   border-radius: 8px;
+`;
+
+export const Category = styled.span`
+  text-transform: capitalize;
 `;

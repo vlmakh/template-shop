@@ -4,6 +4,7 @@ import { fetchProducts } from './operations';
 const initialState = {
   items: [],
   isLoading: false,
+  category: [],
 };
 
 export const productsSlice = createSlice({
@@ -38,7 +39,11 @@ export const productsSlice = createSlice({
     namedown: state => {
       state.items.sort((a, b) => b.title.localeCompare(a.title));
     },
+    chooseCategory: (state, action) => {
+      state.category = action.payload.category;
+    },
   },
 });
 
-export const { priceup, pricedown, nameup, namedown } = productsSlice.actions;
+export const { priceup, pricedown, nameup, namedown, chooseCategory } =
+  productsSlice.actions;

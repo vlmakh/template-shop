@@ -25,6 +25,7 @@ export const Button = styled.button`
   font-size: 16px;
   font-weight: 700; 
   cursor: pointer;
+  border-width: 0;
 
   transition: background-color 250ms ease-in;
 

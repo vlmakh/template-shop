@@ -9,9 +9,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { fetchProducts } from 'redux/operations';
 import {
-  selectProducts,
   selectIsLoading,
   selectIsLoggedIn,
+  selectFilteredProducts,
 } from 'redux/selectors';
 import { addProduct } from 'redux/cart';
 import { Modal } from 'components/Modal/Modal';
@@ -20,7 +20,7 @@ import { Sort } from 'components/Sort/Sort';
 
 export const ProductsPage = () => {
   const isLoading = useSelector(selectIsLoading);
-  const products = useSelector(selectProducts);
+  const filteredProducts = useSelector(selectFilteredProducts);
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
@@ -49,23 +49,25 @@ export const ProductsPage = () => {
         <Box pt="40px" display="flex" textAlign="center">
           <Sort />
 
-          <List>
-            {products.map(product => {
-              return (
-                <Item key={product.id}>
-                  <ProductLink to={`${product.id}`}>
-                    <ProductCard product={product} />
-                  </ProductLink>
-                  <BuyBtnCard
-                    type="button"
-                    onClick={() => handleBuy(product.id)}
-                  >
-                    Buy
-                  </BuyBtnCard>
-                </Item>
-              );
-            })}
-          </List>
+          <Box>
+            <List>
+              {filteredProducts.map(product => {
+                return (
+                  <Item key={product.id}>
+                    <ProductLink to={`${product.id}`}>
+                      <ProductCard product={product} />
+                    </ProductLink>
+                    <BuyBtnCard
+                      type="button"
+                      onClick={() => handleBuy(product.id)}
+                    >
+                      Buy
+                    </BuyBtnCard>
+                  </Item>
+                );
+              })}
+            </List>
+          </Box>
         </Box>
       )}
 
