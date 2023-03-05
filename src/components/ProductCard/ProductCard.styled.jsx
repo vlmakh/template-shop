@@ -31,6 +31,10 @@ export const BuyBtn = styled.button`
   :hover {
     background-color: ${p => p.theme.colors.accent};
   }
+
+  :active {
+    box-shadow: inset ${p => p.theme.shadows.button};
+  }
 `;
 
 export const ProductLink = styled(NavLink)`
