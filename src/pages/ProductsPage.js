@@ -46,7 +46,7 @@ export const ProductsPage = () => {
       {isLoading && <div>Loading ...</div>}
 
       {!isLoading && (
-        <Box pt={5} display="flex" textAlign="center">
+        <Box pt="40px" display="flex" textAlign="center">
           <Sort />
 
           <List>

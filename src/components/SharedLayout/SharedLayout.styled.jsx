@@ -17,7 +17,7 @@ export const Header = styled.div`
   top: 0;
   z-index: 100;
   width: 100%;
-  height: ${p => p.theme.space[5]}px;
+  height: 40px;  
   padding: 0 16px;
   background-color: white;
 `;

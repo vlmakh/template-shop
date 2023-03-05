@@ -1,4 +1,6 @@
-export const theme = {
+import { createTheme } from '@mui/material/styles';
+
+export const theme = createTheme({
   colors: {
     main: '#112734',
     secondary: '#ffffff',
@@ -26,4 +28,4 @@ export const theme = {
     button: '0 0 8px #ffffff, 0 0 16px #ffffff, 0 0 20px #ffffff',
     card: '0 0 4px darkcyan, 0 0 8px darkcyan',
   },
-};
+});
