@@ -23,6 +23,6 @@ export const theme = {
     round: '50%',
   },
   shadows: {
-    link: '0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 20px #ffffff',
+    button: '0 0 8px #ffffff, 0 0 16px #ffffff, 0 0 20px #ffffff',
   },
 };

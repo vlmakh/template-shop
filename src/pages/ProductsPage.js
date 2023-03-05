@@ -13,6 +13,7 @@ import {
 import { addProduct } from 'redux/cart';
 import { Modal } from 'components/Modal/Modal';
 import { InfoBox } from 'components/InfoBox/InfoBox';
+import { Sort } from 'components/Sort/Sort';
 
 export const ProductsPage = () => {
   const isLoading = useSelector(selectIsLoading);
@@ -42,7 +43,9 @@ export const ProductsPage = () => {
       {isLoading && <div>Loading ...</div>}
 
       {!isLoading && (
-        <Box pt={5} textAlign="center">
+        <Box pt={5} display="flex" textAlign="center">
+          <Sort />
+
           <List>
             {products.map(product => {
               return (
