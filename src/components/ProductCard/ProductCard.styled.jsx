@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
+import { Button } from 'components/Base/Base';
 
 export const CardWrap = styled.div`
   display: flex;
@@ -16,25 +17,10 @@ export const CardWrap = styled.div`
   color: #212121;
 `;
 
-export const BuyBtn = styled.button`
+export const BuyBtnCard = styled(Button)`
   width: 100%;
-  padding: 16px 0;
-  font-size: 16px;
-  font-weight: 700;
-  border: 1px solid grey;
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
-  cursor: pointer;
-
-  transition: background-color 250ms ease-in;
-
-  :hover {
-    background-color: ${p => p.theme.colors.accent};
-  }
-
-  :active {
-    box-shadow: inset ${p => p.theme.shadows.button};
-  }
+  padding: 16px 0;  
+  border-radius: 0;
 `;
 
 export const ProductLink = styled(NavLink)`

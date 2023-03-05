@@ -9,16 +9,21 @@ export const List = styled.ul`
   padding: 16px;
 `;
 
-export const Item = styled.li``;
+export const Item = styled.li`
+border-radius: 8px;
+overflow: hidden;
+border: 1px solid grey;
 
-export const BuyBtnPage = styled.button`
-  margin-top: 16px;
-  width: 200px;
-  padding: 16px 0;
+transition: box-shadow 250ms ease-in;
+
+  :hover {
+    box-shadow: ${p => p.theme.shadows.card};
+  }
+`;
+
+export const Button = styled.button`
   font-size: 16px;
-  font-weight: 700;
-  border: 1px solid grey;
-  border-radius: 8px;
+  font-weight: 700; 
   cursor: pointer;
 
   transition: background-color 250ms ease-in;
@@ -32,6 +37,14 @@ export const BuyBtnPage = styled.button`
   }
 `;
 
+export const BuyBtnBig = styled(Button)`
+  margin-top: 16px;
+  width: 200px;
+  padding: 16px 0;
+   border: 1px solid grey;
+  border-radius: 8px;
+`;
+
 export const StyledLink = styled(NavLink)`
   font-size: 16px;
   font-weight: 700;
@@ -43,11 +56,11 @@ export const StyledLink = styled(NavLink)`
 
   &.active {
     font-weight: 700;
-    color: ${(p) => p.theme.colors.accent};
+    color: ${p => p.theme.colors.accent};
   }
 
-  :hover {    
-    color: ${(p) => p.theme.colors.accent};
+  :hover {
+    color: ${p => p.theme.colors.accent};
   }
 `;
 
@@ -61,7 +74,7 @@ export const StyledLinkBtn = styled.button`
 
   transition: color 250ms ease-in;
 
-  :hover {    
-    color: ${(p) => p.theme.colors.accent};
+  :hover {
+    color: ${p => p.theme.colors.accent};
   }
-`
+`;

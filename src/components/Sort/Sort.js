@@ -1,4 +1,4 @@
-import { StyledForm, Label } from './Sort.styled';
+import { StyledForm, Label, SortBtn } from './Sort.styled';
 import { Box } from 'components/Box/Box';
 import { Formik, Field } from 'formik';
 import { useSelector, useDispatch } from 'react-redux';
@@ -54,7 +54,7 @@ export const Sort = () => {
               <Field type="radio" name="sort" value="namedown" />
               Name down
             </Label>
-            <button type="submit">Apply Sort</button>
+            <SortBtn type="submit">Apply Sort</SortBtn>
           </StyledForm>
         )}
       </Formik>

@@ -1,7 +1,7 @@
 import { Box } from 'components/Box/Box';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { BuyBtnPage } from 'components/Base/Base';
+import { BuyBtnBig } from 'components/Base/Base';
 import { fetchProductItem } from 'redux/operations';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -59,9 +59,9 @@ export const ProductItemPage = () => {
 
               <p>{productData.description}</p>
               <p>{productData.price} USD</p>
-              <BuyBtnPage type="button" onClick={handleBuy}>
+              <BuyBtnBig type="button" onClick={handleBuy}>
                 Buy
-              </BuyBtnPage>
+              </BuyBtnBig>
             </Box>
           )}
         </Box>

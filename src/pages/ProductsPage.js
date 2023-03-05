@@ -1,6 +1,9 @@
 import { Box } from 'components/Box/Box';
 import { ProductCard } from 'components/ProductCard/ProductCard';
-import { BuyBtn, ProductLink } from 'components/ProductCard/ProductCard.styled';
+import {
+  BuyBtnCard,
+  ProductLink,
+} from 'components/ProductCard/ProductCard.styled';
 import { List, Item } from 'components/Base/Base';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
@@ -53,9 +56,12 @@ export const ProductsPage = () => {
                   <ProductLink to={`${product.id}`}>
                     <ProductCard product={product} />
                   </ProductLink>
-                  <BuyBtn type="button" onClick={() => handleBuy(product.id)}>
+                  <BuyBtnCard
+                    type="button"
+                    onClick={() => handleBuy(product.id)}
+                  >
                     Buy
-                  </BuyBtn>
+                  </BuyBtnCard>
                 </Item>
               );
             })}
