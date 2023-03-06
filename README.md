@@ -1,9 +1,7 @@
-# react-template-mpa
+# template-shop
 
-npm i
+Test task of creating template of Internet-shop website using:
 
-npm i react-router-dom
-
-npm i styled-system
-
-npm i @emotion/styled @emotion/react
+- React
+- Redux
+- Firebase
