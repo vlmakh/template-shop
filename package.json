@@ -2,7 +2,7 @@
   "name": "react-template",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://vlmakh.github.io/template-shop/",
+  "homepage": "https://template-shop-seven.vercel.app/",
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
