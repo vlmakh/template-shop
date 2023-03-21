@@ -1,7 +1,11 @@
 # template-shop
 
-Test task of creating template of Internet-shop website using:
+Test task for creating an online store website template using:
 
-- React
-- Redux
-- Firebase
+- React;
+- Redux;
+- Firebase.
+
+List of products is taken from free API.
+
+Shopping cart data is persisted in local storage.
