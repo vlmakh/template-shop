@@ -43,8 +43,6 @@ export const Sort = () => {
   };
 
   const handleSubmitCategory = values => {
-    console.log(values);
-
     if (!values.category.length) {
       dispatch(fetchProducts());
     }
