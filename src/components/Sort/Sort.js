@@ -3,6 +3,7 @@ import { Box } from 'components/Box/Box';
 import { Formik, Field } from 'formik';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectProducts } from 'redux/selectors';
+import { fetchProducts } from 'redux/operations';
 import {
   priceup,
   pricedown,
@@ -26,22 +27,26 @@ export const Sort = () => {
     ),
   ];
 
-  const handleSubmitSort = values => {
-    if (values.sort === 'priceup') {
+  const handleRadio = e => {
+    if (e.target.value === 'priceup') {
       dispatch(priceup(products));
     }
-    if (values.sort === 'pricedown') {
+    if (e.target.value === 'pricedown') {
       dispatch(pricedown(products));
     }
-    if (values.sort === 'nameup') {
+    if (e.target.value === 'nameup') {
       dispatch(nameup(products));
     }
-    if (values.sort === 'namedown') {
+    if (e.target.value === 'namedown') {
       dispatch(namedown(products));
     }
   };
 
   const handleSubmitCategory = values => {
+    if (!values.category.length) {
+      dispatch(fetchProducts());
+    }
+
     dispatch(chooseCategory(values));
   };
 
@@ -51,11 +56,8 @@ export const Sort = () => {
         initialValues={{
           sort: '',
         }}
-        onSubmit={values => {
-          handleSubmitSort(values);
-        }}
       >
-        <StyledForm>
+        <StyledForm onChange={handleRadio}>
           <h4>Sort by</h4>
 
           <Label>
@@ -74,7 +76,6 @@ export const Sort = () => {
             <Field type="radio" name="sort" value="namedown" />
             Name down
           </Label>
-          <SortBtn type="submit">Apply Sort</SortBtn>
         </StyledForm>
       </Formik>
 
@@ -99,7 +100,7 @@ export const Sort = () => {
               );
             })}
 
-            <SortBtn type="submit">Apply Sort</SortBtn>
+            <SortBtn type="submit">Choose</SortBtn>
           </StyledForm>
         </Formik>
       </Box>
