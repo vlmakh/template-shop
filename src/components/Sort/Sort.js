@@ -100,7 +100,7 @@ export const Sort = () => {
               );
             })}
 
-            <SortBtn type="submit">Apply Sort</SortBtn>
+            <SortBtn type="submit">Choose</SortBtn>
           </StyledForm>
         </Formik>
       </Box>
