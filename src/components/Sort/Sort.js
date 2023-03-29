@@ -27,17 +27,17 @@ export const Sort = () => {
     ),
   ];
 
-  const handleSubmitSort = values => {
-    if (values.sort === 'priceup') {
+  const handleRadio = e => {
+    if (e.target.value === 'priceup') {
       dispatch(priceup(products));
     }
-    if (values.sort === 'pricedown') {
+    if (e.target.value === 'pricedown') {
       dispatch(pricedown(products));
     }
-    if (values.sort === 'nameup') {
+    if (e.target.value === 'nameup') {
       dispatch(nameup(products));
     }
-    if (values.sort === 'namedown') {
+    if (e.target.value === 'namedown') {
       dispatch(namedown(products));
     }
   };
@@ -56,11 +56,8 @@ export const Sort = () => {
         initialValues={{
           sort: '',
         }}
-        onSubmit={values => {
-          handleSubmitSort(values);
-        }}
       >
-        <StyledForm>
+        <StyledForm onChange={handleRadio}>
           <h4>Sort by</h4>
 
           <Label>
@@ -79,7 +76,6 @@ export const Sort = () => {
             <Field type="radio" name="sort" value="namedown" />
             Name down
           </Label>
-          <SortBtn type="submit">Apply Sort</SortBtn>
         </StyledForm>
       </Formik>
 
