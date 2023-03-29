@@ -3,6 +3,7 @@ import { Box } from 'components/Box/Box';
 import { Formik, Field } from 'formik';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectProducts } from 'redux/selectors';
+import { fetchProducts } from 'redux/operations';
 import {
   priceup,
   pricedown,
@@ -42,6 +43,12 @@ export const Sort = () => {
   };
 
   const handleSubmitCategory = values => {
+    console.log(values);
+
+    if (!values.category.length) {
+      dispatch(fetchProducts());
+    }
+
     dispatch(chooseCategory(values));
   };
 
